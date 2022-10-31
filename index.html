@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de regreción</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+
+
+</head>
+<body>
+    <div class="random image and prediction">
+        <img id="img" crossorigin src="https://picsum.photos/200/300?random=3243" width="227" height="227"/>
+        <div id="img_descripción">
+                <div id="value 1"></div>
+                <div id="value 2"></div>
+                <div id="value 3"></div>
+        </div>
+        <button onclick="changeImage()" id="img_change">change img</button>
+    </div>
+
+
+    <br>
+
+    <div class="webcam capture">
+        <video autoplay playsinline muted id="webcam" width="224" height="224"></video>
+        <div id="console"> </div>
+
+        <div class="buttons">
+            <button onclick="addExample(1)">Example 1</button>
+            <button onclick="addExample(2)">Example 2</button>
+            <button onclick="addExample(3)">Example 3</button>
+            <button onclick="addExample(4)">Example 4</button>
+            <button onclick="addExample(5)">Example 5</button>
+        </div>
+    </div>
+
+
+    <script src="./TF.js?v=13"></script>
+</body>
+</html>
