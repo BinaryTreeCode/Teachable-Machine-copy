@@ -6,37 +6,72 @@ const img_value_3 = document.getElementById("value 3");
 
 var webcamEl = document.getElementById("webcam"); //El = Elemento
 
+const classifier = knnClassifier.create();
+
+var net ;
+var webcam;
+
 
 async function app() {
 
     net = await mobilenet.load();
 
-    var result = await net.classify(imgEl);
-    console.log(result);
+    var result_img = await net.classify(imgEl);
+    console.log(result_img);
     predictionImage();  
     
-    const webcam = await tf.data.webcam(webcamEl);
+    webcam = await tf.data.webcam(webcamEl);
 
     while (true) {
         
         const img = await webcam.capture();
 
-        const result2 = await net.classify(img);
+        const result = await net.classify(img);
         
+        console.log(result);
+
+        document.getElementById("console").innerHTML = `La IA pre entrenada movilnet dice que esto es\n
+        ${result[0].className} con una probabilidad del ${result[0].probability.toFixed(2) * 100}%`
+
+        const activation = net.infer(img, 'conv_preds');
+
+        var result2;
+
+        try {
+            result2 = await classifier.predictClass(activation);
+            console.log(result2); 
+
+        } catch (error) {
+            result2 = {};
+        }
+
         console.log(result2);
 
-        document.getElementById("console").innerHTML = "la IA dice que esto es " 
-        + result2[0].classname + " con una probabilidad del " 
-        + result2[1].probability.toFixed(2) * 100 + "%"
+        const classes = ["Untrained", "Gato", "Dino" , "Alex", "OK","Rock"]
+
+        try {
+            document.getElementById("console2").innerText = `
+          prediction: ${classes[result2.label]}\n
+          probability: ${result2.confidences[result2.label]}
+          `;
+          } catch (error) {
+            document.getElementById("console2").innerText= "Untrained";
+          }
+      
+
+
 
         img.dispose();
 
-        await tf.nextframe(); 
+        await tf.nextFrame();
+
     }
 
     
 
 }
+
+app();
 
 var result;
 async function predictionImage() {
@@ -68,4 +103,13 @@ imgEl.onload = async function() {
     predictionImage();
 } 
 
-app();
+async function addExample(classId) {
+    const img = await webcam.capture();
+
+    const activation = net.infer(img, true);
+    classifier.addExample(activation, classId);
+
+    console.log("se agrego el ejemplo" + img);
+
+    img.dispose();
+} 

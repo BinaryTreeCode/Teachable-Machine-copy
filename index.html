@@ -4,16 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo de regreción</title>
+
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
 
+    <title> Clasificación de Imágenes y Transferencia de Conocimiento</title>
 
+    <style>
+        .random.image.and.prediction {
+            display: grid;
+            height: 90vh;
+
+            justify-items:center;
+            text-align: center;
+
+            font-size: 25px;
+        }
+
+        .random.image.and.prediction button {
+            width: 500px
+        }
+
+        #img_descripción div{
+            margin-bottom: 12px;
+        }
+
+    </style>
 </head>
+
 <body>
     <div class="random image and prediction">
-        <img id="img" crossorigin src="https://picsum.photos/200/300?random=3243" width="227" height="227"/>
+        <img id="img" crossorigin src="https://picsum.photos/200/300?random=3243" width="400" height="400"/>
         <div id="img_descripción">
                 <div id="value 1"></div>
                 <div id="value 2"></div>
@@ -36,6 +58,8 @@
             <button onclick="addExample(4)">Example 4</button>
             <button onclick="addExample(5)">Example 5</button>
         </div>
+
+        <div id="console2"></div>
     </div>
 
 
