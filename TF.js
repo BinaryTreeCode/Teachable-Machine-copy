@@ -31,7 +31,7 @@ async function app() {
         console.log(result);
 
         document.getElementById("console").innerHTML = `La IA pre entrenada movilnet dice que esto es\n
-        ${result[0].className} con una probabilidad del ${result[0].probability.toFixed(2) * 100}%`
+        ${result[0].className} con una probabilidad del ${(result[0].probability*100).toFixed(2)}%`
 
         const activation = net.infer(img, 'conv_preds');
 
@@ -47,12 +47,12 @@ async function app() {
 
         console.log(result2);
 
-        const classes = ["Untrained", "Gato", "Dino" , "Alex", "OK","Rock"]
+        const classes = ["no entrenada", "Example1", "Example2" , "Example3", "Example4","Example5"]
 
         try {
             document.getElementById("console2").innerText = `
-          prediction: ${classes[result2.label]}\n
-          probability: ${result2.confidences[result2.label]}
+          La IA que entrenaste predijo: ${classes[result2.label]}\n
+          con una probabilidad de: ${(result2.confidences[result2.label]*100).toFixed(2)}%
           `;
           } catch (error) {
             document.getElementById("console2").innerText= "Untrained";

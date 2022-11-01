@@ -12,6 +12,19 @@
     <title> Clasificación de Imágenes y Transferencia de Conocimiento</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Lato:ital,wght@1,300&family=Roboto:ital,wght@1,100&display=swap');
+    </style>
+
+    <style>
+
+        body  { 
+            font-family: 'DotGothic16', sans-serif;
+            font-family: 'Lato', sans-serif;
+            font-family: 'Roboto', sans-serif;
+
+            background-color: rgb(172, 240, 255);
+        }
+
         .random.image.and.prediction {
             display: grid;
             height: 90vh;
@@ -20,14 +33,95 @@
             text-align: center;
 
             font-size: 25px;
+
+            margin-top: 30px;
+            margin-bottom: 70px;
+
+        }
+
+        .random.image.and.prediction img {
+            margin-bottom: 10px;
+            border-radius: 20px;
+
         }
 
         .random.image.and.prediction button {
-            width: 500px
+            width: 500px;
+            height: 70px;
+
+            font-size: 25px;
+
+            border-radius: 12px;
+
+            background-color: #FFBBAC;
+            color: white;
+
+            border: 2px solid rgb(172, 240, 255)
         }
 
-        #img_descripción div{
+        .random.image.and.prediction button {
+            transition-duration: 0.4s;
+        }
+        .random.image.and.prediction button:hover {
+
+            background-color: white;
+            color: #FFBBAC;
+        }
+
+        .img_descripción {
+            max-width: 800px;
+        }
+        .img_descripción div{
             margin-bottom: 12px;
+        }
+
+        .webcam.capture {
+            display: grid;
+            height: 90vh;
+
+            justify-items:center;
+            text-align: center;
+
+            font-size: 25px;
+
+            margin-bottom: 50px; 
+        }
+
+        .webcam.capture  img {
+            border-radius: 20px;
+
+        }
+
+        .buttons button{
+            height: 55px;
+            font-size: 20px;
+
+            margin-left: 20px;
+
+            border-radius: 12px;
+
+            
+            background-color: #FFBBAC;
+            color: white;
+
+            border: 2px solid rgb(172, 240, 255)
+        }
+
+        .buttons button {
+            transition-duration: 0.4s;
+        }
+        .buttons button:hover {
+
+            background-color: white;
+            color: #FFBBAC;
+        }
+
+        #console {
+            max-width: 800px;
+            max-height: 200px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
         }
 
     </style>
@@ -36,7 +130,7 @@
 <body>
     <div class="random image and prediction">
         <img id="img" crossorigin src="https://picsum.photos/200/300?random=3243" width="400" height="400"/>
-        <div id="img_descripción">
+        <div class="img_descripción">
                 <div id="value 1"></div>
                 <div id="value 2"></div>
                 <div id="value 3"></div>
@@ -48,7 +142,7 @@
     <br>
 
     <div class="webcam capture">
-        <video autoplay playsinline muted id="webcam" width="224" height="224"></video>
+        <video autoplay playsinline muted id="webcam" width="400" height="400"></video>
         <div id="console"> </div>
 
         <div class="buttons">
@@ -63,6 +157,6 @@
     </div>
 
 
-    <script src="./TF.js?v=13"></script>
+    <script src="./TF.js?v=15"></script>
 </body>
 </html>
